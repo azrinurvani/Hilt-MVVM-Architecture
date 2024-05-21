@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Latihan Hilt MVVM</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="state_empty">Empty Data</string>
+</resources>
