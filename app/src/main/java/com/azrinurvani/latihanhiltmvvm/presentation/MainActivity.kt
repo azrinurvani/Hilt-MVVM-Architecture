@@ -21,14 +21,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupNavigationComponent()
-    }
-
-    private fun setupNavigationComponent(){
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration.Builder(
+            //TODO - Step 59 Change id
             R.id.nav_home,
             R.id.nav_history
         ).build()
@@ -39,5 +36,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         binding.bottomNavView.setupWithNavController(navController)
+
+//        setupNavigationComponent()
+    }
+
+    private fun setupNavigationComponent(){
+
     }
 }

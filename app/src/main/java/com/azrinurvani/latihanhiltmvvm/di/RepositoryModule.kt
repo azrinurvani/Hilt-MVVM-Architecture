@@ -10,7 +10,9 @@ import dagger.hilt.components.SingletonComponent
 //TODO - Step 17
 @Module(
     includes = [
-        NetworkModule::class
+        NetworkModule::class,
+        //TODO - Step 58
+        DatabaseModule::class
     ]
 )
 @InstallIn(SingletonComponent::class)

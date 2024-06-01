@@ -1,18 +1,21 @@
 package com.azrinurvani.latihanhiltmvvm.presentation.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.azrinurvani.latihanhiltmvvm.R
 import com.azrinurvani.latihanhiltmvvm.data.Resource
 import com.azrinurvani.latihanhiltmvvm.databinding.FragmentHomeBinding
+import com.azrinurvani.latihanhiltmvvm.domain.model.News
 import com.azrinurvani.latihanhiltmvvm.presentation.adapter.ParentMainAdapter
+import com.azrinurvani.latihanhiltmvvm.presentation.news_detail.DetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 //TODO - Step 34
@@ -62,6 +65,8 @@ class HomeFragment : Fragment() {
 
                         mainAdapter.setActionClick(
                             actionClick = {
+                                //TODO - Step 56
+                                initActionClickAdapter(it)
                                 Log.d(TAG, "adapter click ${it.id}: ")
                             }
                         )
@@ -71,6 +76,17 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    //TODO - Step 55
+    private fun initActionClickAdapter(news: News) {
+        viewModel.insertHistory(news)
+        activity?.let { context ->
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(Intent.EXTRA_HTML_TEXT, news.url)
+            context.startActivity(intent)
+        }
+
     }
 
     private fun showLoading(state: Boolean){
@@ -104,8 +120,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 

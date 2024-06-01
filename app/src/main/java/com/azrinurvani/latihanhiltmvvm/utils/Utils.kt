@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.Image.Plane
 import android.util.Log
 import android.widget.ImageView
+import com.azrinurvani.latihanhiltmvvm.data.source.local.entity.HistoryEntity
 import com.azrinurvani.latihanhiltmvvm.data.source.remote.response.NewsResponse
 import com.azrinurvani.latihanhiltmvvm.domain.model.News
 import com.bumptech.glide.Glide
@@ -71,5 +72,34 @@ object Utils {
             }
         }
         return ""
+    }
+
+    //TODO - Step 43
+    fun mapperEntityToDomain(entities : List<HistoryEntity>) : List<News>{
+        val mutableNews : MutableList<News> = mutableListOf()
+        entities.forEach{
+            News(
+                id = it.id,
+                name = it.name ?: "",
+                title = it.title ?: "",
+                description = it.description ?: "",
+                url = it.url ?: "",
+                urlToImage = it.urlToImage ?: "",
+                publishedAt = it.publishedAt ?: ""
+            ).let(mutableNews::add)
+        }
+        return mutableNews
+    }
+
+    fun mapperDomainToEntity(news: News) : HistoryEntity{
+        return HistoryEntity(
+            id = 0,
+            name = news.name,
+            title = news.title,
+            description = news.description,
+            url = news.url,
+            urlToImage = news.urlToImage,
+            publishedAt = news.publishedAt
+        )
     }
 }

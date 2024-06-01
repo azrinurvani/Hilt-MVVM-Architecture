@@ -12,4 +12,12 @@ class NewsUseCaseImpl @Inject constructor(private val newsRepository: NewsReposi
     override fun getMainHeadlines(): Flow<Resource<MutableList<List<News>>>> {
         return newsRepository.getMainHeadlines()
     }
+
+    //TODO - Step 47
+    override fun getListHistory(): Flow<List<News>> {
+        return newsRepository.getListHistory()
+    }
+    override suspend fun insertNewsHistory(news: News) {
+        return newsRepository.insertNewsHistory(news)
+    }
 }
