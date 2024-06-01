@@ -23,4 +23,7 @@ class HomeViewModel @Inject constructor(
     fun insertHistory(news: News) = viewModelScope.launch {
         newsUseCase.insertNewsHistory(news)
     }
+
+    //TODO - Step 62
+    fun getNewsSearch(query:String) = newsUseCase.getSearchNews(query).asLiveData()
 }

@@ -11,4 +11,7 @@ interface NewsRepository {
     fun getListHistory() : Flow<List<News>>
 
     suspend fun insertNewsHistory(news: News)
+
+    //TODO - Step 58
+    fun getSearchNews(query:String) : Flow<Resource<List<News>>>
 }

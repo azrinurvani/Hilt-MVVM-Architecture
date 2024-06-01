@@ -33,4 +33,21 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
             Log.e(javaClass.name, "getHeadlineNews: $e")
         }
     }
+
+    //TODO - Step 57
+    suspend fun getSearchNews(query : String) : Flow<ApiResponse<NewsResponse>> = flow {
+        try {
+            emit(
+                ApiResponse.Success(
+                    apiService.getSearchNews(
+                        apiKey = TOKEN,
+                        query = query
+                    )
+                )
+            )
+        }catch (e: Throwable){
+            emit(ApiResponse.Error(e))
+            Log.e(javaClass.name, "getSearchNews: $e")
+        }
+    }
 }

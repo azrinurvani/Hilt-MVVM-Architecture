@@ -1,7 +1,6 @@
 package com.azrinurvani.latihanhiltmvvm.utils
 
 import android.content.Context
-import android.media.Image.Plane
 import android.util.Log
 import android.widget.ImageView
 import com.azrinurvani.latihanhiltmvvm.data.source.local.entity.HistoryEntity
@@ -9,7 +8,6 @@ import com.azrinurvani.latihanhiltmvvm.data.source.remote.response.NewsResponse
 import com.azrinurvani.latihanhiltmvvm.domain.model.News
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import dagger.hilt.android.internal.Contexts
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date

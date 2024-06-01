@@ -1,5 +1,6 @@
 package com.azrinurvani.latihanhiltmvvm.data
 
+import android.util.Log
 import com.azrinurvani.latihanhiltmvvm.data.source.local.LocalDataSource
 import com.azrinurvani.latihanhiltmvvm.data.source.remote.RemoteDataSource
 import com.azrinurvani.latihanhiltmvvm.data.source.remote.network.ApiResponse
@@ -55,5 +56,23 @@ class NewsRepositoryImpl @Inject constructor(
     override suspend fun insertNewsHistory(news: News) {
         //TODO - Step 45
         localDataSource.insertHistoryNews(mapperDomainToEntity(news))
+    }
+
+    //TODO - Step 59
+    override fun getSearchNews(query: String): Flow<Resource<List<News>>>  = flow {
+        emit(Resource.Loading())
+        try {
+            when(val response = remoteDataSource.getSearchNews(query).single()){
+                is ApiResponse.Error ->{
+                    emit(Resource.Error(message = response.error.toString()))
+                }
+                is ApiResponse.Success ->{
+                    emit(Resource.Success(mapperResponseToDomain(response.data)))
+                }
+            }
+        }catch (e: Throwable){
+            emit(Resource.Error(message =  e.message.toString()))
+            Log.d(javaClass.name, "getSearchNews: $e")
+        }
     }
 }

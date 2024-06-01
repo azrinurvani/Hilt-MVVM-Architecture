@@ -1,7 +1,6 @@
 package com.azrinurvani.latihanhiltmvvm.domain
 
 import com.azrinurvani.latihanhiltmvvm.data.Resource
-import com.azrinurvani.latihanhiltmvvm.data.source.local.entity.HistoryEntity
 import com.azrinurvani.latihanhiltmvvm.domain.model.News
 import kotlinx.coroutines.flow.Flow
 
@@ -12,5 +11,9 @@ interface NewsUseCase {
 
     //TODO - Step 46
     fun getListHistory() : Flow<List<News>>
+
     suspend fun insertNewsHistory(news: News)
+
+    //TODO - Step 60
+    fun getSearchNews(query: String) : Flow<Resource<List<News>>>
 }

@@ -20,4 +20,9 @@ class NewsUseCaseImpl @Inject constructor(private val newsRepository: NewsReposi
     override suspend fun insertNewsHistory(news: News) {
         return newsRepository.insertNewsHistory(news)
     }
+
+    //TODO - Step 61
+    override fun getSearchNews(query: String): Flow<Resource<List<News>>> {
+        return newsRepository.getSearchNews(query)
+    }
 }
